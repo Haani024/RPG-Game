@@ -2,29 +2,31 @@ using UnityEngine;
 
 public class WeaponContactDetection : MonoBehaviour
 {
+    public Collider swordCollider; 
+    public int damage = 10; // Adjust damage as needed
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
-        
+        swordCollider.enabled = false; 
+    }
+    public void StartAttackCollider()
+    {
+        swordCollider.enabled = true; 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EndAttackCollider()
     {
-        
+        swordCollider.enabled = false; 
     }
-    
-    public void OnWeaponHit(GameObject enemyObject)
+
+    private void OnTriggerEnter(Collider other)
     {
-        
-        if (enemyObject != null)
+        SpiderHealth enemyHealth = other.GetComponent<SpiderHealth>();
+        if (enemyHealth != null)
         {
-            
-        
-            
-          
+            enemyHealth.TakeDamage(damage);
         }
     }
-    
 }
+

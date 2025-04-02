@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpiderHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 30;
     private int currentHealth;
     private Animator animator;
 
@@ -11,8 +11,6 @@ public class SpiderHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
-        Thread.Sleep(10000);
-        animator.Play("Death");
     }
 
 
@@ -28,6 +26,7 @@ public class SpiderHealth : MonoBehaviour
     
         if (currentHealth <= 0)
         {
+            
             Die();
         }
     }
@@ -39,10 +38,9 @@ public class SpiderHealth : MonoBehaviour
         {
             animator.SetTrigger("Death");
         }
-
         
-        Destroy(gameObject, 2f);
-        XPManager.Instance.AddXP(50);
+        Destroy(gameObject, 5f);
+        
         Debug.Log("Enemy Defeated! 50 XP awarded.");
     }
 }
