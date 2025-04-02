@@ -1,11 +1,13 @@
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpiderHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 30;
-    private int currentHealth;
+    public int currentHealth;
     private Animator animator;
+    public Image healthBarGreen;
 
     private void Start()
     {
@@ -23,7 +25,13 @@ public class SpiderHealth : MonoBehaviour
         {
             animator.SetTrigger("TakeDamage_002");
         }
-    
+        if (healthBarGreen != null)
+        {
+            float newFillAmount = (float)currentHealth / maxHealth;
+            
+            healthBarGreen.fillAmount = newFillAmount;
+           
+        }
         if (currentHealth <= 0)
         {
             
