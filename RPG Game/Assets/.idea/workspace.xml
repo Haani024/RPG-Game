@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cd555c7-814c-4ea6-9652-42c548c84783" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Level 1.unity" afterDir="false" />
-    </list>
+    <list default="true" id="8cd555c7-814c-4ea6-9652-42c548c84783" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +30,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "test",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -50,7 +48,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743039269741</updated>
       <workItem from="1743039271450" duration="10291000" />
-      <workItem from="1743634913927" duration="740000" />
+      <workItem from="1743634913927" duration="1355000" />
     </task>
     <servers />
   </component>
