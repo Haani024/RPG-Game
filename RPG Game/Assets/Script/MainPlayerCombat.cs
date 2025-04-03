@@ -40,7 +40,7 @@ public class MainPlayerCombat : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(1))
         {
             if (stateInfo.IsTag("Attack") && stateInfo.normalizedTime >= 0.7f)
             {

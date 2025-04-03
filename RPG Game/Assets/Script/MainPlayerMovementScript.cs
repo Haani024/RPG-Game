@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MainPlayerMovementScript : MonoBehaviour
@@ -10,6 +11,11 @@ public class MainPlayerMovementScript : MonoBehaviour
     public float gravity = 9.81f;  // Gravity force
     public float groundCheckDistance = 0.2f; // Distance to check for ground
     private Vector3 velocity; // Stores gravity force
+    
+    public float jumpHeight = 15f;
+    public float jumpCooldown = 0.2f;
+    private float lastJumpTime = -10f;
+    private bool isJumping = false;
 
     [Header("Camera Reference")]
     public Camera mainCamera;
@@ -77,6 +83,22 @@ public class MainPlayerMovementScript : MonoBehaviour
         moveDirection = moveDirection.normalized;
 
         bool isMoving = moveDirection.magnitude > 0;
+        
+        
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && Time.time > lastJumpTime + jumpCooldown)
+        {
+            // Calculate jump velocity using physics formula: v = sqrt(2 * height * gravity)
+            velocity.y = Mathf.Sqrt(2f * jumpHeight * gravity);
+            lastJumpTime = Time.time;
+            isJumping = true;
+    
+            // Optional: Play jump sound
+            // AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+        }
+        if (IsGrounded() && isJumping && velocity.y < 0)
+        {
+            isJumping = false;
+        }
 
         if (animator != null)
         {
@@ -85,6 +107,7 @@ public class MainPlayerMovementScript : MonoBehaviour
             animator.SetBool("MovingB", vertical < 0);
             animator.SetBool("MovingL", horizontal > 0);
             animator.SetBool("MovingR", horizontal < 0);
+            animator.SetBool("IsJumping", isJumping);
         }
 
         // Apply movement
@@ -96,13 +119,13 @@ public class MainPlayerMovementScript : MonoBehaviour
         // Apply gravity manually
         if (!IsGrounded())
         {
-            velocity.y -= gravity * Time.deltaTime; // Apply gravity over time
+            velocity.y -= 2 * gravity * Time.deltaTime; // Apply gravity over time
         }
         else if (velocity.y < 0)
         {
             velocity.y = -2f; // Small reset value to avoid continuous falling
         }
-
+        
         controller.Move(velocity * Time.deltaTime); // Apply gravity to movement
 
         UpdateCameraPosition();
@@ -121,9 +144,23 @@ public class MainPlayerMovementScript : MonoBehaviour
         mainCamera.transform.LookAt(transform.position + Vector3.up * 1.5f);
     }
 
+   
     bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
+       
+        Vector3 rayStart = transform.position + Vector3.up * 0.1f;
+        
+        if (Physics.Raycast(rayStart, Vector3.down, groundCheckDistance + 0.1f))
+        {
+            return true;
+        }
+        
+        if (controller != null && controller.isGrounded)
+        {
+            return true;
+        }
+    
+        return false;
     }
 
     void OnApplicationFocus(bool hasFocus)
