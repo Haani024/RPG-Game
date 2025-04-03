@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponContactDetection : MonoBehaviour
 {
     public Collider swordCollider; 
-    public int damage = 10; // Adjust damage as needed
+    public int damage = 10; 
     
     
     void Start()

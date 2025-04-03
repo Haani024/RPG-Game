@@ -8,7 +8,7 @@ public class MainPlayerCombat : MonoBehaviour
 
     private int comboCount = 0;
     private float comboTimer = 0f;
-    private float comboWindow = 1.5f;  // Time before combo resets
+    private float comboWindow = 1.5f;  
     private bool comboQueued = false;
 
     void Start()
@@ -56,9 +56,9 @@ public class MainPlayerCombat : MonoBehaviour
     private void PerformAttack()
     {
         comboTimer = 0f;
-        comboCount = (comboCount % 3) + 1;  // Loops back to Attack1 after Attack3
+        comboCount = (comboCount % 3) + 1;  
 
-        animator.ResetTrigger("NoAttack");  // Prevents accidental resets
+        animator.ResetTrigger("NoAttack");  
         animator.SetTrigger($"Attack{comboCount}");
     }
 
@@ -68,7 +68,7 @@ public class MainPlayerCombat : MonoBehaviour
         comboTimer = 0f;
         comboQueued = false;
         
-        animator.SetTrigger("NoAttack"); // Transition back to idle or no attack state
+        animator.SetTrigger("NoAttack"); 
     }
 
     private void OnAnimatorMove()
@@ -77,11 +77,11 @@ public class MainPlayerCombat : MonoBehaviour
 
         if (stateInfo.IsTag("Attack"))
         {
-            // Apply root motion smoothly ONLY during attack animations
+            
             controller.Move(animator.deltaPosition);
             transform.rotation *= animator.deltaRotation;
 
-            // If combo was queued, execute it slightly earlier
+            
             if (comboQueued && stateInfo.normalizedTime >= 0.85f)
             {
                 comboQueued = false;
