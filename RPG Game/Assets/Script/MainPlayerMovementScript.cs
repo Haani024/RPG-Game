@@ -12,7 +12,7 @@ public class MainPlayerMovementScript : MonoBehaviour
     public float groundCheckDistance = 0.2f; // Distance to check for ground
     private Vector3 velocity; // Stores gravity force
     
-    public float jumpHeight = 15f;
+    public float jumpHeight = 50f;
     public float jumpCooldown = 0.2f;
     private float lastJumpTime = -10f;
     private bool isJumping = false;
@@ -88,7 +88,7 @@ public class MainPlayerMovementScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && Time.time > lastJumpTime + jumpCooldown)
         {
             // Calculate jump velocity using physics formula: v = sqrt(2 * height * gravity)
-            velocity.y = Mathf.Sqrt(2f * jumpHeight * gravity);
+            velocity.y = Mathf.Sqrt(8f * jumpHeight * gravity);
             lastJumpTime = Time.time;
             isJumping = true;
     
