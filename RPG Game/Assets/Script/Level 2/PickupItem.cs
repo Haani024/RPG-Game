@@ -46,6 +46,10 @@ public class PickupItem : MonoBehaviour
                 TryPickup();
             }
         }
+        
+        
+        
+        
     }
     
     void TryPickup()
@@ -58,6 +62,10 @@ public class PickupItem : MonoBehaviour
             
             // Destroy the object
             Destroy(gameObject);
+            
+            pickupPrompt.SetActive(false);
+            
+            
         }
         else
         {
@@ -65,7 +73,12 @@ public class PickupItem : MonoBehaviour
             Debug.Log("Inventory full!");
             // You could display a message to the player here
         }
+        
+        
     }
+
+   
+    
     
     // Optional: Draw pickup range in editor for debugging
     void OnDrawGizmosSelected()
@@ -73,4 +86,6 @@ public class PickupItem : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, pickupRange);
     }
+    
+    
 }
