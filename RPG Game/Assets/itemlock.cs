@@ -35,7 +35,7 @@ public class Itemlock : MonoBehaviour
         if (bottleCount >= itemsRequired)
         {
             Debug.Log("Bottle count reached. Forcing door open.");
-            animator.Play("big door open2"); // <-- This skips the trigger & just plays it
+             animator.SetTrigger("bigdoor"); // <-- This skips the trigger & just plays it
             doorOpened = true;
         }
     }
