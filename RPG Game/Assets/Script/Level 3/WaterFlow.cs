@@ -11,7 +11,6 @@ public class WaterFlow : MonoBehaviour
         if (hasFlowedThroughCorrectPath && Vector3.Distance(waterSource.transform.position, waterDestination.transform.position) < 1f)
         {
             Debug.Log("Water reached destination!");
-            // Trigger gate opening or next step
         }
     }
 }
