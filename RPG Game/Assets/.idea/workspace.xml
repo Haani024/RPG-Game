@@ -31,7 +31,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "puzzle",
+    "git-widget-placeholder": "puzzleupdate",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -50,7 +50,7 @@
       <updated>1743039269741</updated>
       <workItem from="1743039271450" duration="10291000" />
       <workItem from="1743634913927" duration="2020000" />
-      <workItem from="1743658056767" duration="6250000" />
+      <workItem from="1743658056767" duration="6776000" />
     </task>
     <servers />
   </component>
