@@ -15,6 +15,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Script/Customization/StartGame.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Script/Level 2/InventoryNavigation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bigtarget.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/target.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -30,7 +31,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "test",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -48,7 +49,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743039269741</updated>
       <workItem from="1743039271450" duration="10291000" />
-      <workItem from="1743634913927" duration="1355000" />
+      <workItem from="1743634913927" duration="2020000" />
     </task>
     <servers />
   </component>
