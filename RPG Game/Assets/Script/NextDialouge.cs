@@ -21,7 +21,7 @@ public class NextDialogue : MonoBehaviour
                     index++;
                 }
                 else
-                {    
+                {
                     // No more children to show, reset index
                     index = 2;
                     MainPlayerMovementScript.dialouge = false;
