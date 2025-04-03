@@ -7,8 +7,8 @@ public class TitlePageScript : MonoBehaviour
 {
     public TextMeshProUGUI titleText;
     private string[] messages = { "Born under an ill-omened blood-red eclipse, you are marked by fate with ashen-white eyes and blackened veins—signs of an ancient and terrible curse. " +
-                                  "Feared by your village, you are cast out into a world that sees you as a monster. With nowhere to turn, you wanders the wilds, a land filled with prowling beasts " +
-                                  "and lawless murderers, searching for answers about your affliction. Legends speak of a way to break this curse, ancient gods that guard the secrets of fate. " +
+                                  "Feared by your village, you are cast out into a world that sees you as a monster. With nowhere to turn, you wander the wilds, searching for answers about " +
+                                  "your affliction. Legends speak of a way to break this curse, ancient gods that guard the secrets of fate. " +
                                   "Only by hunting them down and claiming their unique abilities will you gain the knowledge and strength to find those who did this to you." +
                                   "\n\n Press Enter to Continue..." };
     private int currentMessageIndex = -1;
