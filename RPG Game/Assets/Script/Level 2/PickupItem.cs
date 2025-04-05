@@ -28,6 +28,8 @@ public class PickupItem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
     
+    // In your PickupItem.cs, modify these parts:
+
     void Update()
     {
         // Check if player is in range
@@ -35,23 +37,19 @@ public class PickupItem : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, player.position);
             playerInRange = distance <= pickupRange;
+        
+            // Use the global prompt manager instead of local prompt
+            if (PickupPromptManager.instance != null)
+                PickupPromptManager.instance.ShowPrompt(playerInRange);
             
-            // Show/hide pickup prompt
-            if (pickupPrompt != null)
-                pickupPrompt.SetActive(playerInRange);
-                
             // Check for pickup input
             if (playerInRange && Input.GetKeyDown(interactKey))
             {
                 TryPickup();
             }
         }
-        
-        
-        
-        
     }
-    
+
     void TryPickup()
     {
         // Try to add to inventory
@@ -59,22 +57,19 @@ public class PickupItem : MonoBehaviour
         {
             // Success! Item was added
             Debug.Log("Picked up: " + itemName);
-            
+        
+            // Make sure to hide the global prompt
+            if (PickupPromptManager.instance != null)
+                PickupPromptManager.instance.ShowPrompt(false);
+        
             // Destroy the object
             Destroy(gameObject);
-            
-            pickupPrompt.SetActive(false);
-            
-            
         }
         else
         {
             // Inventory full
             Debug.Log("Inventory full!");
-            // You could display a message to the player here
         }
-        
-        
     }
 
    
