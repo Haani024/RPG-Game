@@ -141,6 +141,7 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         
         if (animator != null)
         {
+            
             animator.SetTrigger("TakeDamage_002");
         }
         if (healthBarGreen != null)
