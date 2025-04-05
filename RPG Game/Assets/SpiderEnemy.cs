@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class SpiderEnemy : MonoBehaviour
+public class SpiderEnemy : MonoBehaviour, IDamageable
 {
     public float moveSpeed = 3f;
     public float attackDistance = 2f;
@@ -14,6 +15,9 @@ public class SpiderEnemy : MonoBehaviour
     private float nextAttackTime = 0f;
     private bool isAttacking = false;
     private Animator animator;
+    [SerializeField] private int maxHealth = 30;
+    public int currentHealth;
+    public Image healthBarGreen;
 
     void Start()
     {
@@ -128,6 +132,42 @@ public class SpiderEnemy : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, attackDistance);
         }
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+    
+        
+        if (animator != null)
+        {
+            animator.SetTrigger("TakeDamage_002");
+        }
+        if (healthBarGreen != null)
+        {
+            float newFillAmount = (float)currentHealth / maxHealth;
+            
+            healthBarGreen.fillAmount = newFillAmount;
+           
+        }
+        if (currentHealth <= 0)
+        {
+            
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        
+        if (animator != null)
+        {
+            animator.SetTrigger("Death");
+        }
+        
+        Destroy(gameObject, 5f);
+        
+        Debug.Log("Enemy Defeated! 50 XP awarded.");
     }
 }
 
