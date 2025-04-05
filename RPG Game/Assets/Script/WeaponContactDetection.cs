@@ -22,7 +22,7 @@ public class WeaponContactDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SpiderHealth enemyHealth = other.GetComponent<SpiderHealth>();
+        IDamageable enemyHealth = other.GetComponent<IDamageable>();
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(damage);

@@ -2,7 +2,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpiderHealth : MonoBehaviour
+public class SpiderHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private int maxHealth = 30;
     public int currentHealth;

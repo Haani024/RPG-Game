@@ -50,7 +50,6 @@ public class EnemyWeapon : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);
-                Debug.Log("Hit player for " + damage + " damage!");
             }
         }
     }
