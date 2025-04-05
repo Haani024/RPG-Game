@@ -3479,7 +3479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarGreen: {fileID: 1050129036}
-  detectionRadius: 60
+  detectionRadius: 11
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -3688,7 +3688,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971092008}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7ab94c1624ce7345a06e4f72cc30c2d, type: 3}
   m_Name: 
@@ -3738,12 +3738,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1971092014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3751,17 +3751,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971092008}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ad63c581065d3d408e2f824f01fb0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1
   attackDistance: 20
-  attackDamage: 10
-  attackCooldown: 5
+  attackDamage: 1
+  attackCooldown: 10
   flipFacingDirection: 1
   showAttackRange: 1
+  maxHealth: 100
+  currentHealth: 0
+  healthBarGreen: {fileID: 36916246}
 --- !u!195 &1971092015
 NavMeshAgent:
   m_ObjectHideFlags: 0
