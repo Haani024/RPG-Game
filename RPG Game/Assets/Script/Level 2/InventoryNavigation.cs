@@ -211,6 +211,7 @@ public class InventoryNavigation : MonoBehaviour
             if (itemNameTexts[i] != null && string.IsNullOrEmpty(itemNameTexts[i].text))
             {
                 // This slot is empty, add the item here
+                Debug.Log($"[AddItem] Slot {i} - assigning item '{itemName}'");
                 itemNameTexts[i].text = itemName;
                 
                 if (itemImages[i] != null)
