@@ -242,7 +242,8 @@ public class HumanEnemy : MonoBehaviour, IDamageable
         {
             animator.SetTrigger("Death");
         }
-        
+
+        agent.updatePosition = false;
         Destroy(gameObject, 5f);
         
         Debug.Log("Enemy Defeated! 50 XP awarded.");

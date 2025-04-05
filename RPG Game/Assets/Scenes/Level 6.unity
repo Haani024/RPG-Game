@@ -285,7 +285,7 @@ PrefabInstance:
       addedObject: {fileID: 1898232523}
     - targetCorrespondingSourceObject: {fileID: 1601037767692750, guid: 2a038e4e49fd7f64aa727b5a60cfd55b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1898232527}
+      addedObject: {fileID: 1898232529}
   m_SourcePrefab: {fileID: 100100000, guid: 2a038e4e49fd7f64aa727b5a60cfd55b, type: 3}
 --- !u!1 &124397701
 GameObject:
@@ -3205,6 +3205,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 538319748239782208, guid: 16aefa655064a8642a98ef1ba0e6dbc9, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1968744419011754778, guid: 16aefa655064a8642a98ef1ba0e6dbc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 483.0534
@@ -3512,7 +3516,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4142258926128110, guid: 2a038e4e49fd7f64aa727b5a60cfd55b, type: 3}
   m_PrefabInstance: {fileID: 120421424}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &1898232527
+--- !u!136 &1898232529
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3531,10 +3535,10 @@ CapsuleCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.36
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &1916663534
 PrefabInstance:
   m_ObjectHideFlags: 0
