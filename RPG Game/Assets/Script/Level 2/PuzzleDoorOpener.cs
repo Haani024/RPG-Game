@@ -5,24 +5,18 @@ public class PuzzleDoorOpener : MonoBehaviour
     public Transform leftDoor;
     public Transform rightDoor;
 
-    public float openAngle = 90f;
     public float openSpeed = 2f;
 
     private bool isOpening = false;
-    private Quaternion leftStartRotation;
-    private Quaternion rightStartRotation;
+
     private Quaternion leftTargetRotation;
     private Quaternion rightTargetRotation;
 
     void Start()
     {
-        // Record initial door rotations
-        leftStartRotation = leftDoor.localRotation;
-        rightStartRotation = rightDoor.localRotation;
-
-        // Set target rotations for opening outward
-        leftTargetRotation = leftStartRotation * Quaternion.Euler(0, -openAngle, 0);
-        rightTargetRotation = rightStartRotation * Quaternion.Euler(0, openAngle, 0);
+        // Set the exact final rotations (manually verified)
+        leftTargetRotation = Quaternion.Euler(0, -71f, 0);
+        rightTargetRotation = Quaternion.Euler(0, 71f, 0);
     }
 
     void Update()
@@ -36,9 +30,10 @@ public class PuzzleDoorOpener : MonoBehaviour
 
     public void OpenDoors()
     {
-        isOpening = true;
         Debug.Log("Puzzle doors opening!");
+        isOpening = true;
     }
 }
+
 
 
