@@ -8,11 +8,11 @@ public class MainPlayerMovementScript : MonoBehaviour
     public float horizontalMovementMultiplier = 0.5f;
     public float mouseSensitivity = 3f;
     public float movementThreshold = 0.05f;
-    public float gravity = 9.81f;  // Gravity force
-    public float groundCheckDistance = 0.2f; // Distance to check for ground
-    private Vector3 velocity; // Stores gravity force
-    
-    public float jumpHeight = 50f;
+    public float gravity = 9.81f;
+    public float groundCheckDistance = 0.2f;
+
+    private Vector3 velocity;
+    public float jumpHeight = 1.5f;
     public float jumpCooldown = 0.2f;
     private float lastJumpTime = -10f;
     private bool isJumping = false;
@@ -30,22 +30,31 @@ public class MainPlayerMovementScript : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponentInChildren<Animator>();
 
-        // Ensure we have a camera
+        // Delay Animator assignment in case model is swapped in late
+        Invoke(nameof(RefreshAnimator), 0.1f);
+
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
         }
 
-        // Initially lock the cursor (FPS style)
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
+    void RefreshAnimator()
+    {
+        animator = GetComponentInChildren<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogWarning("Animator not found! Make sure the model prefab has one.");
+        }
+    }
+
     void Update()
     {
-        // If dialogue is active, disable movement & show cursor
         if (dialouge)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -56,17 +65,13 @@ public class MainPlayerMovementScript : MonoBehaviour
                 animator.SetBool("IsSprinting", false);
             }
 
-            // Skip movement logic
             return;
         }
         else
         {
-            // Normal locked-cursor mode
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
-        // ----- Movement & Rotation Logic (only runs if dialogue == false) -----
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         transform.Rotate(Vector3.up * mouseX);
@@ -83,18 +88,14 @@ public class MainPlayerMovementScript : MonoBehaviour
         moveDirection = moveDirection.normalized;
 
         bool isMoving = moveDirection.magnitude > 0;
-        
-        
+
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && Time.time > lastJumpTime + jumpCooldown)
         {
-            // Calculate jump velocity using physics formula: v = sqrt(2 * height * gravity)
             velocity.y = Mathf.Sqrt(8f * jumpHeight * gravity);
             lastJumpTime = Time.time;
             isJumping = true;
-    
-            // Optional: Play jump sound
-            // AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
+
         if (IsGrounded() && isJumping && velocity.y < 0)
         {
             isJumping = false;
@@ -110,24 +111,22 @@ public class MainPlayerMovementScript : MonoBehaviour
             animator.SetBool("IsJumping", isJumping);
         }
 
-        // Apply movement
         if (isMoving)
         {
             controller.Move(moveDirection * sprintSpeed * Time.deltaTime);
         }
 
-        // Apply gravity manually
+        // Gravity
         if (!IsGrounded())
         {
-            velocity.y -= 2 * gravity * Time.deltaTime; // Apply gravity over time
+            velocity.y -= 2 * gravity * Time.deltaTime;
         }
         else if (velocity.y < 0)
         {
-            velocity.y = -2f; // Small reset value to avoid continuous falling
+            velocity.y = -2f;
         }
-        
-        controller.Move(velocity * Time.deltaTime); // Apply gravity to movement
 
+        controller.Move(velocity * Time.deltaTime);
         UpdateCameraPosition();
     }
 
@@ -135,31 +134,25 @@ public class MainPlayerMovementScript : MonoBehaviour
     {
         if (mainCamera == null) return;
 
-        // A simple 3rd-person camera
-        Vector3 targetPosition = transform.position
-            + transform.forward * -5f
-            + Vector3.up * 2f;
-
-        mainCamera.transform.position = targetPosition;
+        Vector3 targetPosition = transform.position + transform.forward * -5f + Vector3.up * 2f;
+        mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPosition, Time.deltaTime * 5f);
         mainCamera.transform.LookAt(transform.position + Vector3.up * 1.5f);
     }
 
-   
     bool IsGrounded()
     {
-       
         Vector3 rayStart = transform.position + Vector3.up * 0.1f;
-        
+
         if (Physics.Raycast(rayStart, Vector3.down, groundCheckDistance + 0.1f))
         {
             return true;
         }
-        
+
         if (controller != null && controller.isGrounded)
         {
             return true;
         }
-    
+
         return false;
     }
 

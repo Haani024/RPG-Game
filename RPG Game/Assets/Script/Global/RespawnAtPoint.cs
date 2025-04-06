@@ -1,0 +1,14 @@
+using UnityEngine;
+
+public class RespawnAtPoint : MonoBehaviour
+{
+    [SerializeField] private Transform respawnPoint;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            HealthSystem.Instance.TakeDamage(1000);
+        }
+    }
+}
