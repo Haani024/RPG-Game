@@ -7,29 +7,41 @@ public class PuzzleManager : MonoBehaviour
     public List<PadController> wallPads;       // Assign all 5 wall pads
     public Transform bossDoor;
     private float[] displayTimes = { 3f, 2f, 1.2f }; // Level 1 → 3
+    private bool puzzleStarted = false;
+
 
     private int currentLevel = 0;
     private int maxLevels => displayTimes.Length; // Add this
 
-    private List<Color> availableColors = new List<Color>();
-    private List<Color> sequence = new();
+    private Dictionary<int, Color> colorMap = new();
+    private List<int> sequence = new();
+    private List<int> playerInput = new();
     private int sequenceLength = 5;
     private bool acceptingInput = false;
     private int inputIndex = 0;
 
     void Start()
     {
-        // Match the colors used on your floor pads
-        availableColors.Add(Color.green);
-        availableColors.Add(Color.yellow);
-        availableColors.Add(Color.black);
+        colorMap.Add(0, Color.green);
+        colorMap.Add(1, Color.yellow);
+        colorMap.Add(2, Color.black);
     }
+    
+   
 
     public void StartPuzzle()
     {
+        Debug.Log("StartPuzzle() called"); // Debug
+        puzzleStarted = true;
         currentLevel = 0;
+        inputIndex = 0;
+        sequence.Clear();
+        playerInput.Clear();
+
         StartCoroutine(PlayLevel());
     }
+
+
 
     IEnumerator PlayLevel()
     {
@@ -38,16 +50,16 @@ public class PuzzleManager : MonoBehaviour
         inputIndex = 0;
         acceptingInput = false;
 
-        // Generate a full 5-color sequence
         for (int i = 0; i < sequenceLength; i++)
         {
-            sequence.Add(availableColors[Random.Range(0, availableColors.Count)]);
+            int colorIndex = Random.Range(0, colorMap.Count);
+            sequence.Add(colorIndex);
         }
 
-        // Display the sequence
+
         for (int i = 0; i < wallPads.Count; i++)
         {
-            wallPads[i].ShowSequenceColor(sequence[i]);
+            wallPads[i].ShowSequenceColor(colorMap[sequence[i]]);
         }
 
         yield return new WaitForSeconds(displayTimes[currentLevel]);
@@ -61,21 +73,22 @@ public class PuzzleManager : MonoBehaviour
         acceptingInput = true;
     }
 
-    public void PlayerStep(Color selectedColor)
+    public void PlayerStep(int colorIndex)
     {
-        if (!acceptingInput || inputIndex >= sequence.Count)
+        if (!acceptingInput || inputIndex >= sequenceLength)
             return;
 
-        wallPads[inputIndex].SetPlayerColor(selectedColor);
+        wallPads[inputIndex].SetPlayerColor(colorMap[colorIndex]);
+        playerInput.Add(colorIndex);
         inputIndex++;
 
-        if (inputIndex < sequence.Count) return;
+        if (playerInput.Count < sequenceLength) return;
 
-        // Check full input
+        // Check result
         bool correct = true;
         for (int i = 0; i < sequenceLength; i++)
         {
-            if (wallPads[i].GetCurrentColor() != sequence[i])
+            if (playerInput[i] != sequence[i])
             {
                 correct = false;
                 break;
@@ -84,11 +97,8 @@ public class PuzzleManager : MonoBehaviour
 
         if (correct)
         {
-            Debug.Log($"Level {currentLevel + 1} complete!");
-
             currentLevel++;
-
-            if (currentLevel >= maxLevels)
+            if (currentLevel >= displayTimes.Length)
             {
                 PuzzleComplete();
             }
@@ -97,19 +107,54 @@ public class PuzzleManager : MonoBehaviour
                 acceptingInput = false;
                 inputIndex = 0;
                 sequence.Clear();
-                availableColors.Clear();
-
+                playerInput.Clear();
                 StartCoroutine(WaitAndStartNextLevel());
             }
         }
-
-
-
         else
         {
             StartCoroutine(ResetAttempt());
         }
     }
+    
+    public void RestartPuzzle()
+    {
+        Debug.Log("Puzzle manually restarted.");
+        StopAllCoroutines();
+
+        currentLevel = 0;
+        inputIndex = 0;
+        sequence.Clear();
+        playerInput.Clear();
+
+        foreach (var pad in wallPads)
+        {
+            pad.ResetPad();
+        }
+
+        StartCoroutine(PlayLevel());
+    }
+
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log($"E pressed - puzzleStarted: {puzzleStarted}, acceptingInput: {acceptingInput}");
+
+            if (puzzleStarted)
+            {
+                Debug.Log("Restarting puzzle...");
+                RestartPuzzle();
+            }
+        }
+    }
+
+
+   
+
+
+
 
     IEnumerator ResetAttempt()
     {
@@ -128,11 +173,14 @@ public class PuzzleManager : MonoBehaviour
     void PuzzleComplete()
     {
         Debug.Log("Puzzle complete. Boss door opening.");
+        puzzleStarted = false;
+
         if (bossDoor != null)
         {
             bossDoor.gameObject.SetActive(false);
         }
     }
+
     
     IEnumerator WaitAndStartNextLevel()
     {

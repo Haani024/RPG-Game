@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FloorPadTrigger : MonoBehaviour
 {
-    public Color padColor;
+    public int colorIndex; // 0 = green, 1 = yellow, 2 = black
     public PuzzleManager puzzleManager;
 
     private bool playerOnPad = false;
@@ -11,8 +11,8 @@ public class FloorPadTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") && !playerOnPad)
         {
-            puzzleManager.PlayerStep(padColor);
             playerOnPad = true;
+            puzzleManager.PlayerStep(colorIndex);
         }
     }
 
@@ -24,6 +24,7 @@ public class FloorPadTrigger : MonoBehaviour
         }
     }
 }
+
 
 
 
