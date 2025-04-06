@@ -11,8 +11,8 @@ public class MainPlayerMovementScript : MonoBehaviour
     public float gravity = 9.81f;  // Gravity force
     public float groundCheckDistance = 0.2f; // Distance to check for ground
     private Vector3 velocity; // Stores gravity force
-    
-    public float jumpHeight = 50f;
+        
+    public float jumpHeight = 1.5f;
     public float jumpCooldown = 0.2f;
     private float lastJumpTime = -10f;
     private bool isJumping = false;
