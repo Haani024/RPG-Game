@@ -1,29 +1,44 @@
 using UnityEngine;
 
-
-using System.Collections;
-
 public class PadController : MonoBehaviour
 {
-    private Color originalColor;
     private Renderer rend;
+    public static readonly Color GreyColor = Color.gray;
+
+    private Color currentColor = GreyColor;
 
     void Awake()
     {
         rend = GetComponent<Renderer>();
-        originalColor = rend.material.color;
+        ResetPad();
     }
 
-    public IEnumerator Flash()
+    // Used to flash the sequence color during the show phase
+    public void ShowSequenceColor(Color color)
     {
-        rend.material.color = Color.white;
-        yield return new WaitForSeconds(0.6f);
-        rend.material.color = originalColor;
+        rend.material.color = color;
+        currentColor = color;
     }
 
+    // Used after show phase to hide the color
     public void ResetPad()
     {
-        rend.material.color = originalColor;
+        currentColor = GreyColor;
+        rend.material.color = GreyColor;
+    }
+
+    // Called when player selects a color
+    public void SetPlayerColor(Color color)
+    {
+        currentColor = color;
+        rend.material.color = color;
+    }
+
+    public Color GetCurrentColor()
+    {
+        return currentColor;
     }
 }
+
+
 
