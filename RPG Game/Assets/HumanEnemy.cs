@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HumanEnemy : MonoBehaviour, IDamageable
 {
@@ -232,6 +233,7 @@ public class HumanEnemy : MonoBehaviour, IDamageable
         {
             
             Die();
+            
         }
     }
 
@@ -247,5 +249,6 @@ public class HumanEnemy : MonoBehaviour, IDamageable
         Destroy(gameObject, 5f);
         
         Debug.Log("Enemy Defeated! 50 XP awarded.");
+        // SceneManager.LoadScene("GameHub");
     }
 }
