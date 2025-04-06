@@ -5,6 +5,6 @@ public class StartGame : MonoBehaviour
 {
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("Level 1"); 
+        SceneManager.LoadScene("Level3"); 
     }
 }
