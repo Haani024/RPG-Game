@@ -38,10 +38,10 @@ public class CerberusChase : MonoBehaviour
     void AttackPlayer()
     {
         // Make sure the player has a health script to damage
-        Health playerHealth = player.GetComponent<Health>();
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            playerHealth.TakeDamage(damage);
+            playerHealth.TakeDamage((int)damage);
         }
 
         // Add bite animation, sound, or particle here
