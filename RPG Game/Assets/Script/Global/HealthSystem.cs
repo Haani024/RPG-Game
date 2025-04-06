@@ -55,6 +55,10 @@ public class HealthSystem : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        if (animator != null)
+        {
+            animator.SetTrigger("TakeDamage");
+        }
         if (currentHealth < 0) currentHealth = 0;
 
         UpdateHealthUI();
@@ -63,6 +67,7 @@ public class HealthSystem : MonoBehaviour
         {
             Die();
         }
+        
     }
 
     public void Heal(int amount)
