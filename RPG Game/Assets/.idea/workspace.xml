@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cd555c7-814c-4ea6-9652-42c548c84783" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/New Terrain 11.asset" beforeDir="false" afterPath="$PROJECT_DIR$/New Terrain 11.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scenes/Level 4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Level 4.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterDetection.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaterDetection.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +23,8 @@
     <setting file="file://$PROJECT_DIR$/Scenes/Level 4/CerberusChase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Script/Customization/StartGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Script/Level 2/InventoryNavigation.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Script/NPCsystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WaterDamage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bigtarget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/target.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -56,7 +60,7 @@
       <workItem from="1743039271450" duration="10291000" />
       <workItem from="1743634913927" duration="2020000" />
       <workItem from="1743658056767" duration="6776000" />
-      <workItem from="1743966141841" duration="711000" />
+      <workItem from="1743966141841" duration="2374000" />
     </task>
     <servers />
   </component>
