@@ -68,7 +68,9 @@ public class DeleteMountain : MonoBehaviour
                 if (mountain != null)
                 {
                     Debug.Log("[DeleteMountain] Deleting mountain: " + mountain.name);
-                    Destroy(mountain);
+                    Destroy(GameObject.Find("destroy"));
+                    Destroy(GameObject.Find("destroy2"));
+
                 }
                 else
                 {
