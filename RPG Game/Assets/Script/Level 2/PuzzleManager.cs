@@ -8,6 +8,9 @@ public class PuzzleManager : MonoBehaviour
     public Transform bossDoor;
     private float[] displayTimes = { 3f, 2f, 1.2f }; // Level 1 → 3
     private bool puzzleStarted = false;
+    public PuzzleDoorOpener puzzleDoorOpener;
+
+
 
 
     private int currentLevel = 0;
@@ -149,37 +152,41 @@ public class PuzzleManager : MonoBehaviour
             }
         }
     }
-
-
-   
-
-
-
+    
 
     IEnumerator ResetAttempt()
     {
+        Debug.Log("Incorrect pattern. Resetting puzzle for retry...");
+
         acceptingInput = false;
         yield return new WaitForSeconds(1f);
 
-        foreach (PadController pad in wallPads)
+        // Reset visuals
+        foreach (var pad in wallPads)
         {
             pad.ResetPad();
         }
 
+        // Clear state for fresh input
         inputIndex = 0;
-        acceptingInput = true;
+        playerInput.Clear();
+
+        acceptingInput = true; // ✅ Critical — allow new input
     }
+
 
     void PuzzleComplete()
     {
         Debug.Log("Puzzle complete. Boss door opening.");
         puzzleStarted = false;
 
-        if (bossDoor != null)
+        if (puzzleDoorOpener != null)
         {
-            bossDoor.gameObject.SetActive(false);
+            puzzleDoorOpener.OpenDoors();
         }
     }
+
+
 
     
     IEnumerator WaitAndStartNextLevel()
