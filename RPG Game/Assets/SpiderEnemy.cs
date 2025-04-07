@@ -107,7 +107,7 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer <= attackDistance)
         {
-            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            HealthSystem playerHealth = player.GetComponent<HealthSystem>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attackDamage);
