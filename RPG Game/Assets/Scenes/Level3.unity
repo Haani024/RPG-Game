@@ -4459,6 +4459,10 @@ PrefabInstance:
       propertyPath: sword
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2907472650528833106, guid: 16aefa655064a8642a98ef1ba0e6dbc9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4677292567492230031, guid: 16aefa655064a8642a98ef1ba0e6dbc9, type: 3}
       propertyPath: m_Constraints
       value: 0
@@ -15145,7 +15149,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482783742}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &482783745
 Camera:
   m_ObjectHideFlags: 0
