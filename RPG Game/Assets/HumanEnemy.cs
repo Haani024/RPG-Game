@@ -247,8 +247,8 @@ public class HumanEnemy : MonoBehaviour, IDamageable
 
         agent.updatePosition = false;
         Destroy(gameObject, 5f);
-        
-        Debug.Log("Enemy Defeated! 50 XP awarded.");
-        // SceneManager.LoadScene("GameHub");
+
+        XPManager.Instance.AddXP(100);
+        SceneManager.LoadScene("GameHub");
     }
 }
