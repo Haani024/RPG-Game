@@ -22,13 +22,5 @@ public class SwordAnimationEvent : MonoBehaviour
         if (playerCombat != null)
             playerCombat.DeactivateSwordHitbox();
     }
-
-    public void AttackAniEnd()
-    {
-        if (playerCombat != null)
-        {
-            playerCombat.AttackAniEnd();
-        }
-    }
 }
 
