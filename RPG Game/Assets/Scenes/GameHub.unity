@@ -733,6 +733,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4001543731709340972, guid: e8839d87202c7874abeba580d0f0cc09, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b44879279ff00394c8487f5f4cdc7886, type: 2}
+    - target: {fileID: 5380235980857526010, guid: e8839d87202c7874abeba580d0f0cc09, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 38eaa05e85047494d8fd664e28336f05, type: 2}
     - target: {fileID: 100082, guid: ad21f133cb1fc0c4399ff6574aeb12f9, type: 3}
       propertyPath: m_Name
       value: Zeus
@@ -793,14 +801,6 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3e195efe3c8134f10a3765e7840ebffb, type: 2}
-    - target: {fileID: 4001543731709340972, guid: e8839d87202c7874abeba580d0f0cc09, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b44879279ff00394c8487f5f4cdc7886, type: 2}
-    - target: {fileID: 5380235980857526010, guid: e8839d87202c7874abeba580d0f0cc09, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 38eaa05e85047494d8fd664e28336f05, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6191,6 +6191,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7268397175521492035, guid: 40eab2e14d8320f42a257cb3f4c1af33, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b44879279ff00394c8487f5f4cdc7886, type: 2}
+    - target: {fileID: 8244626078573811911, guid: 40eab2e14d8320f42a257cb3f4c1af33, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 38eaa05e85047494d8fd664e28336f05, type: 2}
     - target: {fileID: 100058, guid: 31fc44c1e0e57d540b3b04ff81046f56, type: 3}
       propertyPath: m_Name
       value: Posejdon
@@ -6251,14 +6259,6 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3e195efe3c8134f10a3765e7840ebffb, type: 2}
-    - target: {fileID: 7268397175521492035, guid: 40eab2e14d8320f42a257cb3f4c1af33, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b44879279ff00394c8487f5f4cdc7886, type: 2}
-    - target: {fileID: 8244626078573811911, guid: 40eab2e14d8320f42a257cb3f4c1af33, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 38eaa05e85047494d8fd664e28336f05, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6592,6 +6592,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6762145051241179065, guid: 31274d8c882cf38428d7991c48b24d1e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b44879279ff00394c8487f5f4cdc7886, type: 2}
+    - target: {fileID: 8382688193520775390, guid: 31274d8c882cf38428d7991c48b24d1e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 38eaa05e85047494d8fd664e28336f05, type: 2}
     - target: {fileID: 100032, guid: 49e88f60835faa549bdbf971e4f7d935, type: 3}
       propertyPath: m_Name
       value: Hades
@@ -6652,14 +6660,6 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3e195efe3c8134f10a3765e7840ebffb, type: 2}
-    - target: {fileID: 6762145051241179065, guid: 31274d8c882cf38428d7991c48b24d1e, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b44879279ff00394c8487f5f4cdc7886, type: 2}
-    - target: {fileID: 8382688193520775390, guid: 31274d8c882cf38428d7991c48b24d1e, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 38eaa05e85047494d8fd664e28336f05, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

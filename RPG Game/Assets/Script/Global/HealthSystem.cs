@@ -89,7 +89,7 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died! Restarting level...");
-
+        
         // Prevent errors by disabling movement before reloading
         enabled = false;
 
