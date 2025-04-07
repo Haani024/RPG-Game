@@ -5,6 +5,6 @@ public class StartGame : MonoBehaviour
 {
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("Level3"); 
+        SceneManager.LoadScene("GameHub"); 
     }
 }

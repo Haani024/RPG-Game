@@ -18,6 +18,10 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     [SerializeField] private int maxHealth = 30;
     public int currentHealth;
     public Image healthBarGreen;
+    
+    // NavMesh components
+    private NavMeshAgent navMeshAgent;
+    public float stoppingDistance = 1.5f;
 
     void Start()
     {
@@ -30,16 +34,30 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         
         animator = GetComponent<Animator>();
         
+        // Initialize NavMeshAgent
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        if (navMeshAgent == null)
+        {
+            Debug.LogError("NavMeshAgent component not found! Please add a NavMeshAgent component to this GameObject.");
+            return;
+        }
+        
+        // Configure NavMeshAgent
+        navMeshAgent.speed = moveSpeed;
+        navMeshAgent.stoppingDistance = stoppingDistance;
+        navMeshAgent.updateRotation = !flipFacingDirection; // Let NavMesh handle rotation unless we're manually flipping
         
         FacePlayer();
+        
+        // Initialize health
+        currentHealth = maxHealth;
     }
 
     void Update()
     {
         if (!player)
             return;
-
-        
+            
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         
         if (distanceToPlayer <= attackDistance && Time.time >= nextAttackTime && !isAttacking)
@@ -47,7 +65,6 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
             Debug.Log("Initiating attack!");
             Attack();
         }
-        
         else if (!isAttacking)
         {
             MoveTowardPlayer();
@@ -56,21 +73,21 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
 
     void MoveTowardPlayer()
     {
-       //ima change this later to better movement
-        Vector3 direction = (player.position - transform.position).normalized;
-        transform.position += direction * moveSpeed * Time.deltaTime;
+        // Set NavMeshAgent destination to player position
+        navMeshAgent.isStopped = false;
+        navMeshAgent.SetDestination(player.position);
         
-        
-        FacePlayer();
-        
-        
+        // Update animation
         if (animator)
             animator.SetBool("IsMoving", true);
+            
+        // Handle direction facing if needed
+        if (flipFacingDirection)
+            FacePlayer();
     }
     
     void FacePlayer()
     {
-        
         Vector3 targetPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
         transform.LookAt(targetPosition);
         
@@ -82,13 +99,13 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
 
     void Attack()
     {
-        
         nextAttackTime = Time.time + attackCooldown;
         isAttacking = true;
         
+        // Stop movement during attack
+        navMeshAgent.isStopped = true;
         
         FacePlayer();
-        
         
         if (animator)
         {
@@ -98,7 +115,6 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         
         DealDamageToPlayer();
         
-        
         Invoke("FinishAttack", 1f);
     }
     
@@ -107,7 +123,7 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer <= attackDistance)
         {
-            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            HealthSystem playerHealth = player.GetComponent<HealthSystem>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attackDamage);
@@ -123,6 +139,11 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     void FinishAttack()
     {
         isAttacking = false;
+        // Resume movement after attack if player is still out of attack range
+        if (Vector3.Distance(transform.position, player.position) > attackDistance)
+        {
+            navMeshAgent.isStopped = false;
+        }
     }
     
     void OnDrawGizmos()
@@ -138,32 +159,41 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     {
         currentHealth -= damage;
     
-        
         if (animator != null)
         {
-            
             animator.SetTrigger("TakeDamage_002");
         }
+        
         if (healthBarGreen != null)
         {
             float newFillAmount = (float)currentHealth / maxHealth;
-            
             healthBarGreen.fillAmount = newFillAmount;
-           
         }
+        
         if (currentHealth <= 0)
         {
-            
             Die();
         }
     }
 
     private void Die()
     {
+        // Stop movement
+        navMeshAgent.isStopped = true;
+        
+        // Disable NavMeshAgent to prevent further movement
+        navMeshAgent.enabled = false;
         
         if (animator != null)
         {
             animator.SetTrigger("Death");
+        }
+        
+        // Disable collision
+        Collider enemyCollider = GetComponent<Collider>();
+        if (enemyCollider != null)
+        {
+            enemyCollider.enabled = false;
         }
         
         Destroy(gameObject, 5f);
@@ -171,4 +201,3 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         Debug.Log("Enemy Defeated! 50 XP awarded.");
     }
 }
-

@@ -46,7 +46,7 @@ public class EnemyWeapon : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+            HealthSystem playerHealth = other.GetComponent<HealthSystem>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);
