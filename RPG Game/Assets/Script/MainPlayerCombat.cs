@@ -10,7 +10,7 @@ public class MainPlayerCombat : MonoBehaviour
     private bool comboQueued = false;
     private bool isAttacking = false;
 
-    // Adjust this threshold to control when input is accepted during an attack.
+    
     private float comboInputThreshold = 0.7f; 
 
     void Start()
@@ -22,7 +22,7 @@ public class MainPlayerCombat : MonoBehaviour
 
     void Update()
     {
-        // Check for attack input every frame
+        
         if (Input.GetMouseButtonDown(1))
         {
             HandleAttackInput();
@@ -33,7 +33,7 @@ public class MainPlayerCombat : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        // If already in an attack, check if we're past the threshold to queue the next combo
+        
         if (stateInfo.IsTag("Attack"))
         {
             if (stateInfo.normalizedTime >= comboInputThreshold && !comboQueued)
@@ -43,14 +43,14 @@ public class MainPlayerCombat : MonoBehaviour
         }
         else
         {
-            // If not attacking, start the attack immediately
+            
             StartAttack();
         }
     }
 
     private void StartAttack()
     {
-        // Cycle through combo attacks (assuming three distinct attack animations)
+        
         comboCount = (comboCount % 3) + 1;
         animator.ResetTrigger("NoAttack");
         animator.SetTrigger("Attack" + comboCount);
@@ -61,7 +61,7 @@ public class MainPlayerCombat : MonoBehaviour
     
    
 
-    // This method applies root motion to the character during attacks.
+    
     private void OnAnimatorMove()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
@@ -74,20 +74,20 @@ public class MainPlayerCombat : MonoBehaviour
     {
         if (comboQueued)
         {
-            // If an attack input was queued, immediately start the next attack
+            
             comboQueued = false;
             StartAttack();
         }
         else
         {
-            // No follow-up attack; reset the combo state.
+            
             animator.SetTrigger("NoAttack");
             comboCount = 0;
             isAttacking = false;
         }
     }
 
-    // Called via animation events to manage the sword's hitbox.
+    
     public void ActivateSwordHitbox()
     {
         sword.StartAttackCollider();
