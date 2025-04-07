@@ -2623,6 +2623,7 @@ GameObject:
   - component: {fileID: 4117477425042902}
   - component: {fileID: 95327042505428654}
   - component: {fileID: 114248063640914792}
+  - component: {fileID: 6176113312195287214}
   m_Layer: 0
   m_Name: Character5
   m_TagString: Untagged
@@ -2730,6 +2731,18 @@ MonoBehaviour:
   head_m: {fileID: 1025899621462912}
   legs_m: {fileID: 1106794951135804}
   torso_m: {fileID: 1637784335258572}
+--- !u!114 &6176113312195287214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330231571265528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb860a8d08d35c44886f5ad888003460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1334094481615292
 GameObject:
   m_ObjectHideFlags: 0
